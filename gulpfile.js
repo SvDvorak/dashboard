@@ -1,29 +1,33 @@
 var gulp = require('gulp');
 var connect = require('gulp-connect');
+var gulp_rename = require('gulp-rename')
 
 gulp.task('scripts', function() {
   return gulp.src([
       'node_modules/angular/angular.js',
+      'node_modules/jquery/dist/jquery.js',
       'src/app.js',
-      'src/clouds/clouds.js'
+      'src/**/*.js'
   ])
+  .pipe(gulp_rename({dirname:''}))
   .pipe(gulp.dest('dist'))
   .pipe(connect.reload());
 });
 
 gulp.task('html', function() {
   return gulp.src([
-      'src/index.html',
-      'src/clouds/clouds.html'
+      'src/**/*.html'
   ])
+  .pipe(gulp_rename({dirname:''}))
   .pipe(gulp.dest('dist'))
   .pipe(connect.reload());
 });
 
 gulp.task('css', function() {
   return gulp.src([
-      'src/clouds/clouds.css',
+      'src/**/*.css',
   ])
+  .pipe(gulp_rename({dirname:''}))
   .pipe(gulp.dest('dist'))
   .pipe(connect.reload());
 });
